@@ -1,20 +1,26 @@
 class NotebooksController < ApplicationController
 
     def index
-        @notebooks = Notebook.all
-        render json: @notebooks
+        notebooks = Notebook.all
+        render json: notebooks
     end
 
     def create
+        notebook = Notebook.new(notebook_params)
 
+        if notebook.save
+            render json: notebook
+        end
     end
 
     def show
-
+        notebook = Notebook.find(params[:id])
+        render json: notebook
     end
 
     def destroy
-
+        notebook = Notebook.find(params[:id])
+        notebook.destroy
     end
 
     private
