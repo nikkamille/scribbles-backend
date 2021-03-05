@@ -1,7 +1,12 @@
 class NotesController < ApplicationController
 
     def index
-        notes = Note.all
+        if params[:notebook_id]
+            notes = Notebook.find(params[:notebook_id]).notes
+        else
+            notes = Note.all
+        end
+        
         render json: notes
     end
 
