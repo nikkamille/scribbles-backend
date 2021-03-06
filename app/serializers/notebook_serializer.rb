@@ -1,4 +1,4 @@
 class NotebookSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :id, :title
 end
