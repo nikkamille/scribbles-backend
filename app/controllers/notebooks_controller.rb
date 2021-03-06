@@ -2,7 +2,7 @@ class NotebooksController < ApplicationController
 
     def index
         notebooks = Notebook.all
-        render json: NotebookSerializer.new(notebooks)
+        render json: NotebookSerializer.new(notebooks).serializable_hash[:data].map{|hash| hash[:attributes]}
     end
 
     def create
@@ -15,7 +15,7 @@ class NotebooksController < ApplicationController
 
     def show
         notebook = Notebook.find(params[:id])
-        render json: notebook
+        render json: NotebookSerializer.new(notebook).serializable_hash[:data][:attributes]
     end
 
     def destroy
