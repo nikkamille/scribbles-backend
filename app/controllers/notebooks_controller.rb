@@ -10,6 +10,8 @@ class NotebooksController < ApplicationController
 
         if notebook.save
             render json: notebook
+        else
+            render json: {error: "Unable to create notebook."}
         end
     end
 
