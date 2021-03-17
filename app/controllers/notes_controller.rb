@@ -11,8 +11,8 @@ class NotesController < ApplicationController
     end
 
     def create
-        # note = Note.new(note_params)
-        note = Notebook.notes.new(note_params)
+        note = Notebook.find(params[:notebook_id]).notes.new(note_params)
+        # note = notebook.notes.new(note_params)
 
         if note.save
             render json: note
