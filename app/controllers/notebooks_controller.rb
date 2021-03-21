@@ -20,6 +20,11 @@ class NotebooksController < ApplicationController
         render json: NotebookSerializer.new(notebook).serializable_hash[:data][:attributes]
     end
 
+    def update
+        notebook = Notebook.find(params[:id])
+        notebook.update(notebook_params)
+    end
+
     def destroy
         notebook = Notebook.find(params[:id])
         notebook.destroy
