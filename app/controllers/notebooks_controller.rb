@@ -11,7 +11,7 @@ class NotebooksController < ApplicationController
         if notebook.save
             render json: notebook
         else
-            render json: {error: "Unable to create notebook."}
+            render json: {error: "Unable to create notebook. Title can't be empty."}
         end
     end
 
