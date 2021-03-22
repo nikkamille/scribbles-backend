@@ -21,8 +21,11 @@ class NotebooksController < ApplicationController
     end
 
     def update
+        binding.pry
         notebook = Notebook.find(params[:id])
-        notebook.update(notebook_params)
+        notebook.update(title: params[:notebook][:title])
+        notebook.save
+        render json: NotebookSerializer.new(notebook).serializable_hash[:data][:attributes]
     end
 
     def destroy
@@ -33,7 +36,7 @@ class NotebooksController < ApplicationController
     private
 
     def notebook_params
-        params.require(:notebook).permit(:title)
+        params.require(:notebook).permit(:id, :title)
     end
 
 
