@@ -21,10 +21,9 @@ class NotebooksController < ApplicationController
     end
 
     def update
-        binding.pry
+        # binding.pry
         notebook = Notebook.find(params[:id])
         notebook.update(title: params[:notebook][:title])
-        notebook.save
         render json: NotebookSerializer.new(notebook).serializable_hash[:data][:attributes]
     end
 
