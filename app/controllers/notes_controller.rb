@@ -25,8 +25,7 @@ class NotesController < ApplicationController
     end
 
     def destroy
-        # note = Note.find(params[:notebook_id][:id])
-        note = Notebook.find(params[:notebook_id]).notes.find(params[:id])
+        note = Note.find(params[:id])
         note.destroy
     end
 
