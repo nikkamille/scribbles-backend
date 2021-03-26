@@ -24,6 +24,13 @@ class NotesController < ApplicationController
         render json: NoteSerializer.new(note).serializable_hash[:data][:attributes]
     end
 
+    def update
+        # binding.pry
+        note = Note.find(params[:id])
+        note.update(title: params[:note][:title], content: params[:note][:content], date: params[:note][:date])
+        render json: NoteSerializer.new(note).serializable_hash[:data][:attributes]
+    end
+
     def destroy
         note = Note.find(params[:id])
         note.destroy
